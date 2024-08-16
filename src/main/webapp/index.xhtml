@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Listado de Insumos</title>
+    <h:outputStylesheet name="css/bootstrap.min.css"/>
+    <style>
+        /* Make sure the footer is at the bottom */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .content {
+            flex: 1;
+        }
+    </style>
+</h:head>
+<h:body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">DWF404 - DESAFÍO DE APRENDIZAJE</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container content mt-4">
+        <h2 class="text-center">Lista de Insumos</h2>
+        <h:dataTable value="#{InsumosBean.insumos}" var="insumos" styleClass="table table-striped table-bordered caption-top">
+            <f:facet name="caption">Listas de Insumos Médicos</f:facet>
+            <h:column>
+                <f:facet name="header">Nombre</f:facet>
+                #{insumos.nombre}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Fecha de Vencimiento</f:facet>
+                <h:outputText value="#{insumos.fecha_vencimiento}">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Cantidad</f:facet>
+                #{insumos.cantidad}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Descripción</f:facet>
+                #{insumos.descripcion}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Imagen</f:facet>
+                <h:graphicImage value="#{insumos.imagen}" alt="#{insumos.nombre}" width="100"/>
+            </h:column>
+        </h:dataTable>
+
+        <!-- JSON Button -->
+        <h:form>
+            <div class="text-center mt-3">
+                <h:commandButton value="Ver JSON" action="#{InsumosBean.showJson()}" styleClass="btn btn-danger"/>
+            </div>
+        </h:form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <div class="container">
+            <p class="mb-0">CREADO POR JUAN JOSÉ ORTIZ AQUINO (OA232729) Y WILLIAM EMMANUEL MAZARIEGO ORELLANA (MO232723)</p>
+        </div>
+    </footer>
+</h:body>
+</html>
